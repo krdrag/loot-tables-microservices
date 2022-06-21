@@ -1,9 +1,9 @@
-﻿using LootTables.Application.Models.LootTable;
+﻿using LootTables.Application.Models;
 
 namespace LootTables.Application.Services
 {
     public interface ILootService
     {
-        List<string?> GetLoot(string lootTableId);
+        List<ItemModel> GetLoot(string lootTableId);
     }
 }

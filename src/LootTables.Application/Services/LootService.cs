@@ -1,38 +1,38 @@
 ﻿using LootTables.Application.Models;
-using LootTables.Application.Models.LootTable;
+using LootTables.Domain.Entities;
+using LootTables.Domain.Entities.LootTable;
+using LootTables.Domain.Interfaces;
 
 namespace LootTables.Application.Services
 {
     public class LootService : ILootService
     {
         private readonly IRandomizerService _randomizer;
+        private readonly ILootTableEntityRepository _repository;
 
-        public LootService(IRandomizerService randomizer)
+        public LootService(IRandomizerService randomizer, ILootTableEntityRepository repository)
         {
             _randomizer = randomizer;
+            _repository = repository;
         }
 
-        public List<string?> GetLoot(string lootTableId)
+        public List<ItemModel> GetLoot(string lootTableId)
         {
-            //var lootTable = _lootTableRepo.GetlootTable(lootTableId);
-
-            var lootTable = new LootTableModel();
-            lootTable.DropCount = 5;
-
-            lootTable.AddEntry(new DemoItemModel("Item 1", 5));
-            lootTable.AddEntry(new DemoItemModel("Item 2", 5));
-            lootTable.AddEntry(new DemoItemModel("Item 3", 5));
-            lootTable.AddEntry(new DemoItemModel("Item 4", 5));
-            lootTable.AddEntry(new NullEntryModel(15));
+            var lootTable = _repository.GetLootTable(lootTableId);
 
             return RollResults(lootTable)
-                .Select(x => x.ToString())
+                .Select(x => new ItemModel
+                {
+                    Name = x.Name,
+                    Rarity = x.Rarity,
+                    IsGuaranteed = x.IsGuaranteed
+                })
                 .ToList();
         }
 
-        private List<LootEntryModel> RollResults(LootTableModel table)
+        private List<ItemEntity> RollResults(LootTableEntity table)
         {
-            var result = new List<LootEntryModel>();
+            var result = new List<ItemEntity>();
 
             // Add guaranteed drops to result
             foreach (var drop in table.TableContents.Where(x => x.IsEnabled && x.IsGuaranteed))
@@ -61,15 +61,15 @@ namespace LootTables.Application.Services
             return result;
         }
 
-        private void AddToResult(LootEntryModel entry, List<LootEntryModel> results)
+        private void AddToResult(LootEntryEntity entry, List<ItemEntity> results)
         {
-            if (entry.IsUnique && results.Contains(entry) || entry is NullEntryModel)
+            if (entry.IsUnique && results.Contains(entry) || entry.IsNull)
                 return;
 
-            if (entry is LootTableModel table)
+            if (entry is LootTableEntity table)
                 results.AddRange(RollResults(table));
             else
-                results.Add(entry);
+                results.Add((ItemEntity)entry);
         }
     }
 }

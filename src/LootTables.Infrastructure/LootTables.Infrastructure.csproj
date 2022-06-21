@@ -7,11 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\LootTables.Infrastructure\LootTables.Infrastructure.csproj" />
+    <ProjectReference Include="..\LootTables.Domain\LootTables.Domain.csproj" />
   </ItemGroup>
 
 </Project>

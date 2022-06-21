@@ -1,7 +1,6 @@
-﻿using LootTables.Application.Models.LootTable;
+﻿using LootTables.Application.Models;
 using LootTables.Application.Services;
 using Microsoft.AspNetCore.Mvc;
-using LootTables.Application.Models;
 
 namespace LootTables.API.Controllers
 {
@@ -17,7 +16,7 @@ namespace LootTables.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<string?>> GetLoot()
+        public async Task<IEnumerable<ItemModel>> GetLoot()
         {
             return await Task.FromResult(_lootService.GetLoot("test"));
         }

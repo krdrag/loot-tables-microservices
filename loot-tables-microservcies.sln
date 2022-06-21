@@ -7,9 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{5C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LootTables.API", "src\LootTables.API\LootTables.API.csproj", "{359C31E2-C95E-42A4-B49D-4B1D13BF41F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LootTables.Application", "src\LootTables.Application\LootTables.Application.csproj", "{3FE7486C-71D6-40A8-A768-ABCEDE6C936A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LootTables.Application", "src\LootTables.Application\LootTables.Application.csproj", "{3FE7486C-71D6-40A8-A768-ABCEDE6C936A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LootTables.Domain", "LootTables.Domain\LootTables.Domain.csproj", "{63212CC9-BFAA-452A-86CB-0B1541D553F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LootTables.Infrastructure", "src\LootTables.Infrastructure\LootTables.Infrastructure.csproj", "{0393EF2E-3551-4351-BA70-63CE467B333A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LootTables.Domain", "src\LootTables.Domain\LootTables.Domain.csproj", "{A2C644FD-8E44-4921-B636-F3FA1F74A75F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +27,14 @@ Global
 		{3FE7486C-71D6-40A8-A768-ABCEDE6C936A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FE7486C-71D6-40A8-A768-ABCEDE6C936A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FE7486C-71D6-40A8-A768-ABCEDE6C936A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{63212CC9-BFAA-452A-86CB-0B1541D553F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{63212CC9-BFAA-452A-86CB-0B1541D553F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{63212CC9-BFAA-452A-86CB-0B1541D553F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{63212CC9-BFAA-452A-86CB-0B1541D553F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0393EF2E-3551-4351-BA70-63CE467B333A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0393EF2E-3551-4351-BA70-63CE467B333A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0393EF2E-3551-4351-BA70-63CE467B333A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0393EF2E-3551-4351-BA70-63CE467B333A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2C644FD-8E44-4921-B636-F3FA1F74A75F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2C644FD-8E44-4921-B636-F3FA1F74A75F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2C644FD-8E44-4921-B636-F3FA1F74A75F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2C644FD-8E44-4921-B636-F3FA1F74A75F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,7 +42,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{359C31E2-C95E-42A4-B49D-4B1D13BF41F1} = {5C0DBE2C-4628-4456-876B-96DAC003909F}
 		{3FE7486C-71D6-40A8-A768-ABCEDE6C936A} = {5C0DBE2C-4628-4456-876B-96DAC003909F}
-		{63212CC9-BFAA-452A-86CB-0B1541D553F6} = {5C0DBE2C-4628-4456-876B-96DAC003909F}
+		{0393EF2E-3551-4351-BA70-63CE467B333A} = {5C0DBE2C-4628-4456-876B-96DAC003909F}
+		{A2C644FD-8E44-4921-B636-F3FA1F74A75F} = {5C0DBE2C-4628-4456-876B-96DAC003909F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {16BA3C73-53FF-48FC-99B4-94225164554B}
