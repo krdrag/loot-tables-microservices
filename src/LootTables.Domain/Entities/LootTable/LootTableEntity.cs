@@ -7,6 +7,11 @@
     public class LootTableEntity : LootEntryEntity
     {
         /// <summary>
+        /// Id of table.
+        /// </summary>
+        public string TableId { get; set; } = string.Empty;
+
+        /// <summary>
         /// How many items will drop from single roll (max amount)
         /// Does not include guaranteed drops
         /// </summary>
