@@ -24,24 +24,18 @@
         public bool IsEnabled { get; set; } = true;
 
         /// <summary>
+        /// Indicates if item may drop with specific quantity. Will drop between MinQuantity and MaxAmountDrop.
+        /// </summary>
+        public int MinQuantity { get; set; } = 1;
+
+        /// <summary>
+        /// Indicates if item may drop with specific quantity. Will drop between MinQuantity and MaxAmountDrop.
+        /// </summary>
+        public int MaxQuantity{ get; set; } = 1;
+
+        /// <summary>
         /// Special flag used to indicate that this drop is empty.
         /// </summary>
         public bool IsNull { get; set; } = false;
-
-        //public LootEntryEntity()
-        //    : this(0)
-        //{ }
-
-        //public LootEntryEntity(double dropRate)
-        //    : this(dropRate, false, false, true)
-        //{ }
-
-        //public LootEntryEntity(double dropRate, bool isUnique, bool guaranteed, bool isEnabled)
-        //{
-        //    DropRate = dropRate;
-        //    IsUnique = isUnique;
-        //    IsGuaranteed = guaranteed;
-        //    IsEnabled = isEnabled;
-        //}
     }
 }

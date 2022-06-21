@@ -25,7 +25,8 @@ namespace LootTables.Application.Services
                 {
                     Name = x.Name,
                     Rarity = x.Rarity,
-                    IsGuaranteed = x.IsGuaranteed
+                    IsGuaranteed = x.IsGuaranteed,
+                    Quantity = _randomizer.GetIntValue(x.MinQuantity,x.MaxQuantity)
                 })
                 .ToList();
         }
