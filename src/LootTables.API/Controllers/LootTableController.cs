@@ -15,10 +15,16 @@ namespace LootTables.API.Controllers
             _lootService = lootService;
         }
 
-        [HttpGet]
+        [HttpGet("loot")]
         public async Task<IEnumerable<ItemModel>> GetLoot()
         {
             return await Task.FromResult(_lootService.GetLoot("test"));
+        }
+
+        [HttpGet("gacha")]
+        public async Task<IEnumerable<ItemModel>> GetGacha()
+        {
+            return await Task.FromResult(_lootService.GetGacha());
         }
     }
 }

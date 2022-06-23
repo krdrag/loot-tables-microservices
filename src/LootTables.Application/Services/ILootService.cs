@@ -5,5 +5,7 @@ namespace LootTables.Application.Services
     public interface ILootService
     {
         List<ItemModel> GetLoot(string lootTableId);
+
+        List<ItemModel> GetGacha();
     }
 }

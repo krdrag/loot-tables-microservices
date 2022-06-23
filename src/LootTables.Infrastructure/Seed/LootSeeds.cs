@@ -3,12 +3,12 @@ using LootTables.Domain.Entities.LootTable;
 
 namespace LootTables.Infrastructure.Seed
 {
-    public class LootSeeds
+    public static class LootSeeds
     {
         /// <summary>
         /// Base scenario with drops of various rarities and guaranteed gold drop.
         /// </summary>
-        public LootTableEntity BaseScenario()
+        public static LootTableEntity BaseScenario()
         {
             var lootTable = new LootTableEntity
             {
@@ -73,7 +73,7 @@ namespace LootTables.Infrastructure.Seed
         /// <summary>
         /// Advanced scenario with drops of various rarities and guaranteed gold drop.
         /// </summary>
-        public LootTableEntity AdvancedScenario()
+        public static LootTableEntity AdvancedScenario()
         {
             var lootTable = new LootTableEntity();
             lootTable.TableId = "AdvancedScenario";
