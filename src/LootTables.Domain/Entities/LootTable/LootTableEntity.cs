@@ -1,4 +1,7 @@
-﻿namespace LootTables.Domain.Entities.LootTable
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace LootTables.Domain.Entities.LootTable
 {
     /// <summary>
     /// Class describing loot table. It extends LootTableEntryModel 
@@ -6,6 +9,13 @@
     /// </summary>
     public class LootTableEntity : LootEntryEntity
     {
+        /// <summary>
+        /// Id required for mongoDB
+        /// </summary>
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; } = String.Empty;
+
         /// <summary>
         /// Id of table.
         /// </summary>

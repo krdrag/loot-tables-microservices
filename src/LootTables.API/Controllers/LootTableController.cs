@@ -9,15 +9,20 @@ namespace LootTables.API.Controllers
     public class LootTableController : ControllerBase
     {
         private readonly ILootService _lootService;
+        private readonly ILogger<LootTableController> _logger;
 
-        public LootTableController(ILootService lootService)
+        public LootTableController(ILootService lootService, ILogger<LootTableController> logger)
         {
             _lootService = lootService;
+            _logger = logger;
         }
 
         [HttpGet("loot")]
         public async Task<IEnumerable<ItemModel>> GetLoot()
         {
+            _logger.LogInformation(Environment.GetEnvironmentVariable("MONGO_INITDB_ROOT_PASSWORD"));
+
+
             return await Task.FromResult(_lootService.GetLoot("test"));
         }
 
