@@ -11,52 +11,62 @@ namespace LootTables.Infrastructure.Repositories
 {
     public class LootTableEntityRepository : ILootTableEntityRepository
     {
-        private readonly IMongoCollection<LootTableDbEntry> _lootTables;
+        private readonly IMongoCollection<MasterTableEntity> _lootTables;
 
         public LootTableEntityRepository(LootTableDbContext context)
         {
-            _lootTables = context.Database.GetCollection<LootTableDbEntry>(MongoConstants.MongoCollection_LootTables);
+            _lootTables = context.Database.GetCollection<MasterTableEntity>(MongoConstants.MongoCollection_LootTables);
         }
 
-        public async Task<LootTableEntity> GetLootTable(string tableId)
+        public async Task<MasterTableEntity?> GetLootTable(string tableId)
         {
             var tables = _lootTables.AsQueryable().ToList();
 
-            var filter = Builders<LootTableDbEntry>.Filter.Where(x => x.Table.TableId.Equals(tableId));
-            return (await _lootTables.FindAsync(filter)).FirstOrDefault().Table;
+            return await Task.FromResult(tables.FirstOrDefault());
+
+            //var filter = Builders<LootTableDbEntry>.Filter.Where(x => x.Table.TableId.Equals(tableId));
+            //return (await _lootTables.FindAsync(filter)).FirstOrDefault().Table;
 
 
 
 
-            if (tableId == "loot")
-                return LootSeeds.AdvancedScenario();
-            else if(tableId == "GachaLoot")
-                return GachaSeeds.GetLoot();
-            else
-                return GachaSeeds.GetDraw10LootTable();
+            //if (tableId == "loot")
+            //    return LootSeeds.AdvancedScenario();
+            //else if(tableId == "GachaLoot")
+            //    return GachaSeeds.GetLoot();
+            //else
+            //    return GachaSeeds.GetDraw10LootTable();
         }
 
-        public void Insert(LootTableEntity entity)
+        public void Insert(MasterTableEntity entity)
         {
-            var entry = new LootTableDbEntry
-            {
-                Id = GenerateNewId(),
-                Table = entity
-            };
+            entity.Id = GenerateNewId();
 
-            _lootTables.InsertOne(entry);
+            _lootTables.InsertOne(entity);
         }
 
-        public async Task InsertAsync(LootTableEntity entity)
-        {
-            var entry = new LootTableDbEntry
-            {
-                Id = GenerateNewId(),
-                Table = entity
-            };
 
-            await _lootTables.InsertOneAsync(entry);
-        }
+        //public void Insert(LootTableEntity entity)
+        //{
+        //    var entry = new LootTableDbEntry
+        //    {
+        //        Id = GenerateNewId(),
+        //        Table = entity
+        //    };
+
+        //    _lootTables.InsertOne(entry);
+        //}
+
+        //public async Task InsertAsync(LootTableEntity entity)
+        //{
+        //    var entry = new LootTableDbEntry
+        //    {
+        //        Id = GenerateNewId(),
+        //        Table = entity
+        //    };
+
+        //    await _lootTables.InsertOneAsync(entry);
+        //}
 
         private static string GenerateNewId() => ObjectId.GenerateNewId().ToString();
     }

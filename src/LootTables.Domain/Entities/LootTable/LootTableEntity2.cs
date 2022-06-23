@@ -4,7 +4,7 @@
     /// Class describing loot table. It extends LootTableEntryModel 
     /// to allow creating separate "thematic" tables for one roll.
     /// </summary>
-    public class LootTableEntity : LootEntryEntity
+    public class LootTableEntity2 : LootEntryEntity
     {
         /// <summary>
         /// Id of table.

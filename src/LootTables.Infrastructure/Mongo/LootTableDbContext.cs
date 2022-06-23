@@ -36,18 +36,11 @@ namespace LootTables.Infrastructure.Mongo
 
         private void Seed()
         {
-            var collection = _database.GetCollection<LootTableDbEntry>(MongoConstants.MongoCollection_LootTables);
-            //if(collection == null)
-            //{
-                _database.CreateCollection(MongoConstants.MongoCollection_LootTables);
+            var collection = _database.GetCollection<MasterTableEntity>(MongoConstants.MongoCollection_LootTables);
+            _database.CreateCollection(MongoConstants.MongoCollection_LootTables);
 
-                var repo = new LootTableEntityRepository(this);
-
-                repo.Insert(LootSeeds.BaseScenario());
-                repo.Insert(LootSeeds.AdvancedScenario());
-                repo.Insert(GachaSeeds.GetDraw10LootTable());
-                repo.Insert(GachaSeeds.GetLoot());
-            //}
+            var repo = new LootTableEntityRepository(this);
+            repo.Insert(LootSeeds.BasicScenario());
         }
     }
 }

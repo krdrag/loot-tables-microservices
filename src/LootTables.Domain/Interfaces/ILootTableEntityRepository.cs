@@ -1,9 +1,9 @@
-﻿using LootTables.Domain.Entities.LootTable;
+﻿using LootTables.Domain.Entities;
 
 namespace LootTables.Domain.Interfaces
 {
     public interface ILootTableEntityRepository
     {
-        Task<LootTableEntity> GetLootTable(string tableId);
+        Task<MasterTableEntity?> GetLootTable(string tableId);
     }
 }
