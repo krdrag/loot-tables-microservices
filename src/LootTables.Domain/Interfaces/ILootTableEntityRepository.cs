@@ -4,6 +4,6 @@ namespace LootTables.Domain.Interfaces
 {
     public interface ILootTableEntityRepository
     {
-        LootTableEntity GetLootTable(string tableId);
+        Task<LootTableEntity> GetLootTable(string tableId);
     }
 }

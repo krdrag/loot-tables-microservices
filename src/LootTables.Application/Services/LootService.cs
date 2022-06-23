@@ -16,9 +16,9 @@ namespace LootTables.Application.Services
             _repository = repository;
         }
 
-        public List<ItemModel> GetLoot(string lootTableId)
+        public async Task<List<ItemModel>> GetLoot(string lootTableId)
         {
-            var lootTable = _repository.GetLootTable(lootTableId);
+            var lootTable = await _repository.GetLootTable(lootTableId);
 
             return RollResults(lootTable)
                 .Select(x => new ItemModel
@@ -31,38 +31,38 @@ namespace LootTables.Application.Services
                 .ToList();
         }
 
-        public List<ItemModel> GetGacha()
-        {
-            var rarityRollLootTable = _repository.GetLootTable("Gacha");
-            var lootRollTable = _repository.GetLootTable("GachaLoot");
+        //public List<ItemModel> GetGacha()
+        //{
+        //    var rarityRollLootTable = _repository.GetLootTable("Gacha");
+        //    var lootRollTable = _repository.GetLootTable("GachaLoot");
 
-            var rarityRollResults = RollResults(rarityRollLootTable);
+        //    var rarityRollResults = RollResults(rarityRollLootTable);
 
-            var result = new List<ItemModel>();
+        //    var result = new List<ItemModel>();
 
-            foreach(var rarityRollResult in rarityRollResults)
-            {
-                var lootTable = lootRollTable.TableContents
-                    .Where(x => x is LootTableEntity entity && entity.TableId.Equals(rarityRollResult.Rarity))
-                    .OfType<LootTableEntity>()
-                    .FirstOrDefault();
+        //    foreach(var rarityRollResult in rarityRollResults)
+        //    {
+        //        var lootTable = lootRollTable.TableContents
+        //            .Where(x => x is LootTableEntity entity && entity.TableId.Equals(rarityRollResult.Rarity))
+        //            .OfType<LootTableEntity>()
+        //            .FirstOrDefault();
 
-                if (lootTable == null)
-                    continue;
+        //        if (lootTable == null)
+        //            continue;
 
-                var loot = RollResults(lootTable)
-                    .Select(x => new ItemModel
-                    {
-                        Name = x.Name,
-                        Rarity = x.Rarity
-                    })
-                .ToList();
+        //        var loot = RollResults(lootTable)
+        //            .Select(x => new ItemModel
+        //            {
+        //                Name = x.Name,
+        //                Rarity = x.Rarity
+        //            })
+        //        .ToList();
 
-                result.AddRange(loot);
-            }
+        //        result.AddRange(loot);
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
 
         private List<ItemEntity> RollResults(LootTableEntity table)
         {

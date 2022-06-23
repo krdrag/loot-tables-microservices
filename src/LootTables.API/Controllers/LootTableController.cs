@@ -20,16 +20,13 @@ namespace LootTables.API.Controllers
         [HttpGet("loot")]
         public async Task<IEnumerable<ItemModel>> GetLoot()
         {
-            _logger.LogInformation(Environment.GetEnvironmentVariable("MONGO_INITDB_ROOT_PASSWORD"));
-
-
-            return await Task.FromResult(_lootService.GetLoot("test"));
+            return await _lootService.GetLoot("BaseScenario");
         }
 
-        [HttpGet("gacha")]
-        public async Task<IEnumerable<ItemModel>> GetGacha()
-        {
-            return await Task.FromResult(_lootService.GetGacha());
-        }
+        //[HttpGet("gacha")]
+        //public async Task<IEnumerable<ItemModel>> GetGacha()
+        //{
+        //    return await Task.FromResult(_lootService.GetGacha());
+        //}
     }
 }

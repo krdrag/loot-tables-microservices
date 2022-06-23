@@ -1,4 +1,5 @@
 ﻿using LootTables.Domain.Constants;
+using LootTables.Domain.Entities;
 using LootTables.Domain.Entities.LootTable;
 using LootTables.Domain.Exceptions;
 using LootTables.Infrastructure.Repositories;
@@ -23,10 +24,10 @@ namespace LootTables.Infrastructure.Mongo
 
             connstring = string.Format(connstring, userName, password);
 
-            _client = new MongoClient(Environment.GetEnvironmentVariable(connstring));
+            _client = new MongoClient(connstring);
             _database = _client.GetDatabase(MongoConstants.MongoDatabase_LootTables);
 
-            Seed();
+            //Seed();
         }
 
         public IMongoClient Client => _client;
@@ -35,18 +36,18 @@ namespace LootTables.Infrastructure.Mongo
 
         private void Seed()
         {
-            var collection = _database.GetCollection<LootTableEntity>(MongoConstants.MongoCollection_LootTables);
-            if(collection == null)
-            {
+            var collection = _database.GetCollection<LootTableDbEntry>(MongoConstants.MongoCollection_LootTables);
+            //if(collection == null)
+            //{
                 _database.CreateCollection(MongoConstants.MongoCollection_LootTables);
-            }
 
-            var repo = new LootTableEntityRepository(this);
+                var repo = new LootTableEntityRepository(this);
 
-            repo.Insert(LootSeeds.BaseScenario());
-            repo.Insert(LootSeeds.AdvancedScenario());
-            repo.Insert(GachaSeeds.GetDraw10LootTable());
-            repo.Insert(GachaSeeds.GetLoot());
+                repo.Insert(LootSeeds.BaseScenario());
+                repo.Insert(LootSeeds.AdvancedScenario());
+                repo.Insert(GachaSeeds.GetDraw10LootTable());
+                repo.Insert(GachaSeeds.GetLoot());
+            //}
         }
     }
 }
