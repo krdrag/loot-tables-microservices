@@ -1,0 +1,27 @@
+name: Develop - Pull Request
+
+on: workflow_dispatch
+
+jobs:
+  build-loot-service:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.7
+      with:
+        versionSpec: '5.x'
+    - name: Determine Version
+      uses: gittools/actions/gitversion/execute@v0.9.7
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+      working-directory: src/LootTables.API
+    - name: Build
+      run: dotnet build --configuration Debug --no-restore
+      working-directory: src/LootTables.API
