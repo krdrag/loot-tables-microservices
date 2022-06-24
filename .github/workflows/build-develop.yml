@@ -1,4 +1,4 @@
-name: Develop - Pull Request
+name: Develop - Build Container
 
 on: workflow_dispatch
 
