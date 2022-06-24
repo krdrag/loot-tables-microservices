@@ -1,5 +1,6 @@
 ﻿using LootTables.Application.Models;
 using LootTables.Domain.Entities;
+using LootTables.Domain.Exceptions;
 using LootTables.Domain.Interfaces;
 
 namespace LootTables.Application.Services
@@ -20,7 +21,7 @@ namespace LootTables.Application.Services
             var lootTable = await _repository.GetLootTableAsync(lootTableId);
 
             if (lootTable == null)
-                throw new Exception();
+                throw new MongoDBException($"Loot table {lootTableId} not found.");
 
             return RollFromMasterTable(lootTable);
         }
