@@ -1,5 +1,6 @@
 ﻿using LootTables.Application.Models;
 using LootTables.Application.Services;
+using LootTables.Domain.Constants;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LootTables.API.Controllers
@@ -20,13 +21,13 @@ namespace LootTables.API.Controllers
         [HttpGet("loot")]
         public async Task<IEnumerable<ItemModel>> GetLoot()
         {
-            return await _lootService.GetLoot("BaseScenario");
+            return await _lootService.GetLoot(MongoConstants.MongoTable_LootTable);
         }
 
-        //[HttpGet("gacha")]
-        //public async Task<IEnumerable<ItemModel>> GetGacha()
-        //{
-        //    return await Task.FromResult(_lootService.GetGacha());
-        //}
+        [HttpGet("gacha")]
+        public async Task<IEnumerable<ItemModel>> GetGacha()
+        {
+            return await _lootService.GetLoot(MongoConstants.MongoTable_GachaTable);
+        }
     }
 }

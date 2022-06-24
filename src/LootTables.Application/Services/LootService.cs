@@ -17,7 +17,7 @@ namespace LootTables.Application.Services
 
         public async Task<List<ItemModel>> GetLoot(string lootTableId)
         {
-            var lootTable = await _repository.GetLootTable(lootTableId);
+            var lootTable = await _repository.GetLootTableAsync(lootTableId);
 
             if (lootTable == null)
                 throw new Exception();
@@ -34,7 +34,6 @@ namespace LootTables.Application.Services
 
             foreach (var table in masterTable.LootTables)
                 result.AddRange(RollFromTable(table));
-
 
             return result
                 .Select(x => new ItemModel
@@ -95,7 +94,7 @@ namespace LootTables.Application.Services
             return result;
         }
 
-        private void AddToResult(IEnumerable<LootEntity> entries, List<LootEntity> results)
+        private static void AddToResult(IEnumerable<LootEntity> entries, List<LootEntity> results)
         {
             foreach (var entry in entries)
             {
@@ -103,7 +102,7 @@ namespace LootTables.Application.Services
             }
         }
 
-        private void AddToResult(LootEntity entry, List<LootEntity> results)
+        private static void AddToResult(LootEntity entry, List<LootEntity> results)
         {
             if (entry.IsUnique && results.Contains(entry) || entry.IsNull)
                 return;

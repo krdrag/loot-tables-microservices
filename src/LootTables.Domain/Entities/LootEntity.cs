@@ -1,6 +1,4 @@
-﻿using LootTables.Domain.Entities.LootTable;
-
-namespace LootTables.Domain.Entities
+﻿namespace LootTables.Domain.Entities
 {
     public record LootEntity
     {

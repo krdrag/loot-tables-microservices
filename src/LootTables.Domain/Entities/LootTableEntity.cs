@@ -12,6 +12,7 @@ namespace LootTables.Domain.Entities
 
         public IEnumerable<LootEntity> Loot { get; set; } = Enumerable.Empty<LootEntity>();
 
+        public string Description { get; set; } = string.Empty;
         public int DropCount { get; set; }
         public double DropRate { get; set; }
         public bool IsEnabled { get; set; } = true;

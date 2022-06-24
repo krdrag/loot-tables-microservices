@@ -8,5 +8,8 @@
 
         public static readonly string MongoDatabase_LootTables = "LootSystem";
         public static readonly string MongoCollection_LootTables = "LootTables";
+
+        public static readonly string MongoTable_LootTable = "LootTable";
+        public static readonly string MongoTable_GachaTable = "GachaTable";
     }
 }

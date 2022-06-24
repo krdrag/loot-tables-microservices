@@ -4,6 +4,8 @@ namespace LootTables.Domain.Interfaces
 {
     public interface ILootTableEntityRepository
     {
-        Task<MasterTableEntity?> GetLootTable(string tableId);
+        Task<MasterTableEntity?> GetLootTableAsync(string tableId);
+
+        void Insert(MasterTableEntity entity);
     }
 }

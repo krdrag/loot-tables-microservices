@@ -1,9 +1,7 @@
 ﻿using LootTables.Domain.Constants;
 using LootTables.Domain.Entities;
-using LootTables.Domain.Entities.LootTable;
 using LootTables.Domain.Interfaces;
 using LootTables.Infrastructure.Mongo;
-using LootTables.Infrastructure.Seed;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -18,24 +16,10 @@ namespace LootTables.Infrastructure.Repositories
             _lootTables = context.Database.GetCollection<MasterTableEntity>(MongoConstants.MongoCollection_LootTables);
         }
 
-        public async Task<MasterTableEntity?> GetLootTable(string tableId)
+        public async Task<MasterTableEntity?> GetLootTableAsync(string tableId)
         {
-            var tables = _lootTables.AsQueryable().ToList();
-
-            return await Task.FromResult(tables.FirstOrDefault());
-
-            //var filter = Builders<LootTableDbEntry>.Filter.Where(x => x.Table.TableId.Equals(tableId));
-            //return (await _lootTables.FindAsync(filter)).FirstOrDefault().Table;
-
-
-
-
-            //if (tableId == "loot")
-            //    return LootSeeds.AdvancedScenario();
-            //else if(tableId == "GachaLoot")
-            //    return GachaSeeds.GetLoot();
-            //else
-            //    return GachaSeeds.GetDraw10LootTable();
+            var filter = Builders<MasterTableEntity>.Filter.Where(x => x.TableId.Equals(tableId));
+            return (await _lootTables.FindAsync(filter)).FirstOrDefault();
         }
 
         public void Insert(MasterTableEntity entity)
@@ -44,29 +28,6 @@ namespace LootTables.Infrastructure.Repositories
 
             _lootTables.InsertOne(entity);
         }
-
-
-        //public void Insert(LootTableEntity entity)
-        //{
-        //    var entry = new LootTableDbEntry
-        //    {
-        //        Id = GenerateNewId(),
-        //        Table = entity
-        //    };
-
-        //    _lootTables.InsertOne(entry);
-        //}
-
-        //public async Task InsertAsync(LootTableEntity entity)
-        //{
-        //    var entry = new LootTableDbEntry
-        //    {
-        //        Id = GenerateNewId(),
-        //        Table = entity
-        //    };
-
-        //    await _lootTables.InsertOneAsync(entry);
-        //}
 
         private static string GenerateNewId() => ObjectId.GenerateNewId().ToString();
     }

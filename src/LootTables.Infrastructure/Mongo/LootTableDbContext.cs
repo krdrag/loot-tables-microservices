@@ -1,9 +1,7 @@
 ﻿using LootTables.Domain.Constants;
-using LootTables.Domain.Entities;
-using LootTables.Domain.Entities.LootTable;
 using LootTables.Domain.Exceptions;
+using LootTables.Infrastructure.Extensions;
 using LootTables.Infrastructure.Repositories;
-using LootTables.Infrastructure.Seed;
 using MongoDB.Driver;
 
 namespace LootTables.Infrastructure.Mongo
@@ -27,7 +25,7 @@ namespace LootTables.Infrastructure.Mongo
             _client = new MongoClient(connstring);
             _database = _client.GetDatabase(MongoConstants.MongoDatabase_LootTables);
 
-            //Seed();
+            Seed();
         }
 
         public IMongoClient Client => _client;
@@ -36,11 +34,16 @@ namespace LootTables.Infrastructure.Mongo
 
         private void Seed()
         {
-            var collection = _database.GetCollection<MasterTableEntity>(MongoConstants.MongoCollection_LootTables);
+            var collExists = _database.CollectionExists(MongoConstants.MongoCollection_LootTables);
+
+            if (collExists)
+                return;
+
             _database.CreateCollection(MongoConstants.MongoCollection_LootTables);
 
             var repo = new LootTableEntityRepository(this);
-            repo.Insert(LootSeeds.BasicScenario());
+            repo.Insert(SeedData.Seed.GetLoot());
+            repo.Insert(SeedData.Seed.GetGachaDrops());
         }
     }
 }
