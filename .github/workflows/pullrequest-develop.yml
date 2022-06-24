@@ -1,6 +1,8 @@
 name: Develop - Pull Request
 
-on: workflow_dispatch
+on:
+  pull_request:
+    branches: [ develop ]
 
 jobs:
   build-loot-service:
@@ -15,6 +17,13 @@ jobs:
         versionSpec: '5.x'
     - name: Determine Version
       uses: gittools/actions/gitversion/execute@v0.9.7
-    - name: Build Container 
-      run: docker-compose build loottables.api
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+      working-directory: src/LootTables.API
+    - name: Build
+      run: dotnet build --configuration Debug --no-restore
       working-directory: src/LootTables.API
