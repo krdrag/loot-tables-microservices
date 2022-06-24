@@ -199,7 +199,7 @@ namespace LootTables.Infrastructure.SeedData
                     new LootTableEntity
                     {
                         Description = "Guaranteed 1 pull",
-                        DropCount = 9,
+                        DropCount = 1,
                         SubTables = new List<LootTableEntity>
                         {
                             new LootTableEntity
@@ -229,7 +229,7 @@ namespace LootTables.Infrastructure.SeedData
         }
 
         public static LootTableEntity CommonCharacers
-            => new LootTableEntity
+            => new()
             {
                 Description = "Common Characters",
                 DropCount = 1,
@@ -258,7 +258,7 @@ namespace LootTables.Infrastructure.SeedData
             };
 
         public static LootTableEntity RareCharacers
-            => new LootTableEntity
+            => new()
             {
                 Description = "Rare Characters",
                 DropCount = 1,
@@ -287,7 +287,7 @@ namespace LootTables.Infrastructure.SeedData
             };
 
         public static LootTableEntity EpicCharacers
-            => new LootTableEntity
+            => new()
             {
                 Description = "Epic Characters",
                 DropCount = 1,

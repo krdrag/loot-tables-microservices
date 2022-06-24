@@ -13,19 +13,25 @@ namespace LootTables.Infrastructure.Mongo
 
         public LootTableDbContext()
         {
-            var connstring = Environment.GetEnvironmentVariable(MongoConstants.MongoConnectionStringEnvVar);
-            var userName = Environment.GetEnvironmentVariable(MongoConstants.MongoUserNameEnvVar);
-            var password = Environment.GetEnvironmentVariable(MongoConstants.MongoPasswordEnvVar);
-
-            if (string.IsNullOrEmpty(connstring) || string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
-                throw new EnvironmentVariableNotFoundException(connstring, userName, password);
-
-            connstring = string.Format(connstring, userName, password);
+            string connstring = GetConnectionString();
 
             _client = new MongoClient(connstring);
             _database = _client.GetDatabase(MongoConstants.MongoDatabase_LootTables);
 
             Seed();
+        }
+
+        private static string GetConnectionString()
+        {
+            var connstring = Environment.GetEnvironmentVariable(MongoConstants.MongoConnectionStringEnvVar);
+            var userName = Environment.GetEnvironmentVariable(MongoConstants.MongoUserNameEnvVar);
+            var password = Environment.GetEnvironmentVariable(MongoConstants.MongoPasswordEnvVar);
+
+            if (string.IsNullOrEmpty(connstring) || string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
+                throw new EnvVariableNotFoundException(connstring, userName, password);
+
+            connstring = string.Format(connstring, userName, password);
+            return connstring;
         }
 
         public IMongoClient Client => _client;

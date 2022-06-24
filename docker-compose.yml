@@ -1,17 +1,8 @@
 version: '3.4'
 
 services:
-  #loottables.api:
-  #  image: ${DOCKER_REGISTRY-}loottablesapi
-  #  build:
-  #    context: .
-  #    dockerfile: src/LootTables.API/Dockerfile
-  #  env_file:
-  #  - '.env.dev'
-  #  environment:
-  #    - ASPNETCORE_ENVIRONMENT=Development
-
   mongo.db:
+    container_name: mongoDB
     image: mongo
     restart: always
     env_file:
