@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  loottables.api:
+    env_file:
+    - '.env.prod'
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD
+    ports:
+      - "6001:80"
+
+  mongo.db:
+    env_file:
+    - '.env.prod'
