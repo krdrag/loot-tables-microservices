@@ -21,4 +21,5 @@ RUN dotnet publish "LootTables.API.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+LABEL org.opencontainers.image.source https://github.com/krdrag/loot-tables-microservices
 ENTRYPOINT ["dotnet", "LootTables.API.dll"]

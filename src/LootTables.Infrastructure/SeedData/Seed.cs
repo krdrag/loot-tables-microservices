@@ -171,7 +171,7 @@ namespace LootTables.Infrastructure.SeedData
                                 DropRate = 50,
                                 SubTables = new List<LootTableEntity>
                                 {
-                                    CommonCharacers
+                                    CommonItems
                                 }
                             },
                             new LootTableEntity
@@ -181,7 +181,7 @@ namespace LootTables.Infrastructure.SeedData
                                 DropRate = 35,
                                 SubTables = new List<LootTableEntity>
                                 {
-                                    RareCharacers
+                                    RareItems
                                 }
                             },
                             new LootTableEntity
@@ -191,7 +191,7 @@ namespace LootTables.Infrastructure.SeedData
                                 DropRate = 15,
                                 SubTables = new List<LootTableEntity>
                                 {
-                                    EpicCharacers
+                                    EpicItems
                                 }
                             }
                         }
@@ -209,7 +209,7 @@ namespace LootTables.Infrastructure.SeedData
                                 DropRate = 85,
                                 SubTables = new List<LootTableEntity>
                                 {
-                                    RareCharacers
+                                    RareItems
                                 }
                             },
                             new LootTableEntity
@@ -219,7 +219,7 @@ namespace LootTables.Infrastructure.SeedData
                                 DropRate = 15,
                                 SubTables = new List<LootTableEntity>
                                 {
-                                    EpicCharacers
+                                    EpicItems
                                 }
                             }
                         }
@@ -228,87 +228,87 @@ namespace LootTables.Infrastructure.SeedData
             };
         }
 
-        public static LootTableEntity CommonCharacers
+        public static LootTableEntity CommonItems
             => new()
             {
-                Description = "Common Characters",
+                Description = "Common items",
                 DropCount = 1,
                 DropRate = 1,
                 Loot = new List<LootEntity>
                 {
                     new LootEntity
                     {
-                        Name = "Goldust",
+                        Name = "Steel Sword",
                         Rarity = "Common",
                         DropRate = 1
                     },
                     new LootEntity
                     {
-                        Name = "MVP",
+                        Name = "Iron Gauntlet",
                         Rarity = "Common",
                         DropRate = 1
                     },
                     new LootEntity
                     {
-                        Name = "Mark Henry",
+                        Name = "Magic Staff",
                         Rarity = "Common",
                         DropRate = 1
                     }
                 }
             };
 
-        public static LootTableEntity RareCharacers
+        public static LootTableEntity RareItems
             => new()
             {
-                Description = "Rare Characters",
+                Description = "Rare Items",
                 DropCount = 1,
                 DropRate = 1,
                 Loot = new List<LootEntity>
                 {
                     new LootEntity
                     {
-                        Name = "Randy Orton",
+                        Name = "Ring of Speed",
                         Rarity = "Rare",
                         DropRate = 1
                     },
                     new LootEntity
                     {
-                        Name = "John Cena",
+                        Name = "Flame Claymore",
                         Rarity = "Rare",
                         DropRate = 1
                     },
                     new LootEntity
                     {
-                        Name = "Shaemus",
+                        Name = "Invisibility Hat",
                         Rarity = "Rare",
                         DropRate = 1
                     }
                 }
             };
 
-        public static LootTableEntity EpicCharacers
+        public static LootTableEntity EpicItems
             => new()
             {
-                Description = "Epic Characters",
+                Description = "Epic Items",
                 DropCount = 1,
                 DropRate = 1,
                 Loot = new List<LootEntity>
                 {
                     new LootEntity
                     {
-                        Name = "Randy Savage",
+                        Name = "Sword of Doom",
                         Rarity = "Epic",
                         DropRate = 1
                     },
                     new LootEntity
                     {
-                        Name = "The Rock",
+                        Name = "Armageddon's Blade",
                         Rarity = "Epic",
                         DropRate = 1
                     },
                     new LootEntity
                     {
-                        Name = "Chris Jericho",
+                        Name = "Frostmourne",
                         Rarity = "Epic",
                         DropRate = 1
                     }

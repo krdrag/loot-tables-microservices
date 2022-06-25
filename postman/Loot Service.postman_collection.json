@@ -1,0 +1,51 @@
+{
+	"info": {
+		"_postman_id": "7c9099e7-a5ea-4a72-967b-86653a761290",
+		"name": "Loot Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Roll Loot",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:{{PortNumber}}/api/LootTable/loot",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{PortNumber}}",
+					"path": [
+						"api",
+						"LootTable",
+						"loot"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Roll Gacha",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:{{PortNumber}}/api/LootTable/gacha",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{PortNumber}}",
+					"path": [
+						"api",
+						"LootTable",
+						"gacha"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
