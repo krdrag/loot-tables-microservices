@@ -1,8 +1,9 @@
-name: Develop - Pull Request
+name: Pull Request
 
 on:
   pull_request:
-    branches: [ develop ]
+    types: [opened, reopened]
+    branches: [ develop, main, 'release/**' ]
 
 jobs:
   build-loot-service:
