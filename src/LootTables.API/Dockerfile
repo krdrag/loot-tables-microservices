@@ -1,7 +1,5 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-LABEL org.opencontainers.image.source https://github.com/krdrag/loot-tables-microservices
-
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
@@ -23,4 +21,5 @@ RUN dotnet publish "LootTables.API.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+LABEL org.opencontainers.image.source https://github.com/krdrag/loot-tables-microservices
 ENTRYPOINT ["dotnet", "LootTables.API.dll"]
